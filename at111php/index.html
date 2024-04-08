@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificação de Triângulo</title>
+</head>
+
+<body>
+  <h1>Verificação de Triângulo</h1>
+  <form method="post" action="">
+    <label for="a">Lado A:</label>
+    <input type="number" id="a" name="a" required><br>
+
+    <label for="b">Lado B:</label>
+    <input type="number" id="b" name="b" required><br>
+
+    <label for="c">Lado C:</label>
+    <input type="number" id="c" name="c" required><br>
+
+    <input type="submit" value="Verificar">
+  </form>
+
+  <?php
+
+  function verificarTriangulo($a, $b, $c)
+  {
+    if ($a <= 0 || $b <= 0 || $c <= 0) {
+      echo "Os valores dos lados devem ser positivos.";
+    } elseif ($a + $b <= $c || $a + $c <= $b || $b + $c <= $a) {
+      echo "Os valores dos lados não formam um triângulo.";
+    } elseif ($a == $b && $b == $c) {
+      echo "Triângulo Equilátero - 3 lados iguais.";
+    } elseif ($a == $b || $a == $c || $b == $c) {
+      echo "Triângulo Isósceles - 2 lados iguais.";
+    } else {
+      echo "Triângulo Escaleno - Todos os lados diferentes.";
+    }
+  }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $a = $_POST["a"];
+    $b = $_POST["b"];
+    $c = $_POST["c"];
+
+ 
+    verificarTriangulo($a, $b, $c);
+  }
+  ?>
+</body>
+
+</html>
